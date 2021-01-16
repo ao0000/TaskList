@@ -1,4 +1,4 @@
-package me.aofz.tasklist
+package me.aofz.tasklist.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,8 +19,6 @@ class DetailFragment : Fragment() {
             container,
             false
         )
-
-
 
         return binding.root
     }
