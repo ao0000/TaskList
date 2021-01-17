@@ -7,18 +7,15 @@ import me.aofz.tasklist.model.Task
 interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTask(vararg task: Task)
+    suspend fun insertTask(vararg task: Task)
 
     @Update
-    fun updateTask(vararg task: Task)
-
-    @Query("SELECT * FROM tasks")
-    fun getAllTasks(): List<Task>
-
-    @Query("SELECT * FROM tasks where id = :id")
-    fun getTask(id: Long): Task
+    suspend fun updateTask(vararg task: Task)
 
     @Delete
-    fun deleteTask(vararg task: Task)
+    suspend fun deleteTask(vararg task: Task)
+
+    @Query("select * from tasks")
+    suspend fun getAllTasks(): List<Task>
 
 }
