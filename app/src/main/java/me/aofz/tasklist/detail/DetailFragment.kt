@@ -1,4 +1,4 @@
-package me.aofz.tasklist.ui
+package me.aofz.tasklist.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import me.aofz.tasklist.databinding.AddFragmentBinding
+import me.aofz.tasklist.databinding.DetailFragmentBinding
 
-class AddFragment : Fragment() {
+class DetailFragment : Fragment() {
+
+    private lateinit var binding: DetailFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,15 +18,11 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = AddFragmentBinding.inflate(
+        val binding = DetailFragmentBinding.inflate(
             inflater,
             container,
             false
         )
-
-        binding.addButton.setOnClickListener{
-            it.findNavController().popBackStack()
-        }
 
         return binding.root
     }

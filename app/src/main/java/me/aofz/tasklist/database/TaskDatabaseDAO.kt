@@ -1,10 +1,9 @@
-package me.aofz.tasklist.db
+package me.aofz.tasklist.database
 
 import androidx.room.*
-import me.aofz.tasklist.model.Task
 
 @Dao
-interface TaskDao {
+interface TaskDatabaseDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(vararg task: Task)
@@ -15,7 +14,7 @@ interface TaskDao {
     @Delete
     suspend fun deleteTask(vararg task: Task)
 
-    @Query("select * from tasks")
-    suspend fun getAllTasks(): List<Task>
+    @Query("SELECT * FROM task_table ORDER BY id DESC")
+    fun getAllTask(): List<Task>
 
 }

@@ -1,4 +1,4 @@
-package me.aofz.tasklist.viewmodel
+package me.aofz.tasklist.detail
 
 import androidx.lifecycle.ViewModel
 

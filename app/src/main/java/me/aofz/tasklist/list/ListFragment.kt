@@ -1,29 +1,27 @@
-package me.aofz.tasklist.ui
+package me.aofz.tasklist.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import me.aofz.tasklist.databinding.DetailFragmentBinding
+import me.aofz.tasklist.databinding.ListFragmentBinding
 
-class DetailFragment : Fragment() {
+class ListFragment : Fragment() {
+
+    private lateinit var binding: ListFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DetailFragmentBinding.inflate(
+        binding = ListFragmentBinding.inflate(
             inflater,
             container,
             false
         )
-
-        binding.deleteButton.setOnClickListener{
-            it.findNavController().popBackStack()
-        }
 
         return binding.root
     }

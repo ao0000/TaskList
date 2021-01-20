@@ -1,33 +1,46 @@
 package me.aofz.tasklist.repository
 
+import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import me.aofz.tasklist.db.TaskDao
-import me.aofz.tasklist.model.Task
+import me.aofz.tasklist.database.TaskDatabase
+import me.aofz.tasklist.database.Task
 
-class TaskRepository(private val database : TaskDao) {
+class TaskRepository(context: Context) {
 
-    suspend fun insert(task : Task){
-        withContext(Dispatchers.IO){
+    private var database = TaskDatabase.getInstance(context).taskDatabaseDAO
+    var allTask: List<Task> = database.getAllTask()
+
+    companion object {
+        private var instance: TaskRepository? = null
+
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
+            instance ?: TaskRepository(
+                context.applicationContext
+            ).also {
+                instance = it
+            }
+        }
+    }
+
+    suspend fun insert(task: Task) {
+        withContext(Dispatchers.IO) {
             database.insertTask(task)
+            allTask = database.getAllTask()
         }
     }
 
-    suspend fun delete(task: Task){
-        withContext(Dispatchers.IO){
+    suspend fun delete(task: Task) {
+        withContext(Dispatchers.IO) {
             database.deleteTask(task)
+            allTask = database.getAllTask()
         }
     }
 
-    suspend fun update(task: Task){
-        withContext(Dispatchers.IO){
+    suspend fun update(task: Task) {
+        withContext(Dispatchers.IO) {
             database.updateTask(task)
         }
     }
 
-    suspend fun getAll(task: Task){
-        withContext(Dispatchers.IO){
-            database.getAllTasks()
-        }
-    }
 }

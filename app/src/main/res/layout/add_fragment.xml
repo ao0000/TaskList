@@ -11,12 +11,14 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/title_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Title" />
 
         <EditText
+            android:id="@+id/description_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
