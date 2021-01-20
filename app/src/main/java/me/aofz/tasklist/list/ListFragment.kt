@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import me.aofz.tasklist.database.Task
 import me.aofz.tasklist.databinding.ListFragmentBinding
 
 class ListFragment : Fragment() {
@@ -24,6 +25,13 @@ class ListFragment : Fragment() {
             container,
             false
         )
+
+//        binding.taskRecyclerView.also {
+//            // tmp data
+//            val data = List<Task>()
+//
+//            it.adapter = ListRecyclerAdapter(data)
+//        }
 
         return binding.root
     }

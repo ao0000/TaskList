@@ -1,6 +1,7 @@
 package me.aofz.tasklist.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.aofz.tasklist.database.TaskDatabase
@@ -9,7 +10,7 @@ import me.aofz.tasklist.database.Task
 class TaskRepository(context: Context) {
 
     private var database = TaskDatabase.getInstance(context).taskDatabaseDAO
-    var allTask: List<Task> = database.getAllTask()
+    var allTask: LiveData<List<Task>> = database.getAllTask()
 
     companion object {
         private var instance: TaskRepository? = null

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
 import me.aofz.tasklist.database.Task
 
-class ListRecyclerAdapter(private val data: Array<Task>) :
+class ListRecyclerAdapter(private val data: List<Task>) :
     RecyclerView.Adapter<ListRecyclerViewHolder>() {
 
     override fun getItemCount(): Int = data.size

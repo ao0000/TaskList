@@ -1,5 +1,6 @@
 package me.aofz.tasklist.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -15,6 +16,6 @@ interface TaskDatabaseDAO {
     suspend fun deleteTask(vararg task: Task)
 
     @Query("SELECT * FROM task_table ORDER BY id DESC")
-    fun getAllTask(): List<Task>
+    fun getAllTask(): LiveData<List<Task>>
 
 }
