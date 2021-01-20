@@ -5,10 +5,4 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class AddViewModel: ViewModel() {
-
-    fun insertTaskToDatabase(){
-        viewModelScope.launch {
-
-        }
-    }
 }
