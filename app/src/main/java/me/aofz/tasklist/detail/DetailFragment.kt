@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.databinding.DetailFragmentBinding
 
 class DetailFragment : Fragment() {
@@ -24,6 +25,10 @@ class DetailFragment : Fragment() {
             container,
             false
         )
+
+        binding.deleteButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
     }
