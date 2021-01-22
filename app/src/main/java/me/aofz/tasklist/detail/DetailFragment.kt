@@ -7,18 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import me.aofz.tasklist.databinding.DetailFragmentBinding
+import me.aofz.tasklist.repository.TaskRepository
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding: DetailFragmentBinding
-    private val viewmodel by viewModels<DetailViewModel>()
+    private val viewmodel by viewModels<DetailViewModel> {
+        val application = requireNotNull(this.activity).application
+        val taskRepository = TaskRepository.getInstance(application)
+
+        DetailViewModelFactory(taskRepository)
+    }
+    private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val content = args.TaskContent
+
 
         val binding = DetailFragmentBinding.inflate(
             inflater,
@@ -26,7 +36,13 @@ class DetailFragment : Fragment() {
             false
         )
 
+        binding.apply{
+            binding.titleText.text = content.title
+            binding.descriptionText.text = content.description
+        }
+
         binding.deleteButton.setOnClickListener {
+            viewmodel.deleteTask(content)
             findNavController().popBackStack()
         }
 

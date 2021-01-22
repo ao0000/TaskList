@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="detailViewModel"
+            type="me.aofz.tasklist.detail.DetailViewModel" />
 
     </data>
 
@@ -13,13 +16,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textSize="32sp"
+            android:text="@{}"
             tools:text="Title" />
 
         <TextView
+            android:id="@+id/description_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

@@ -1,19 +1,21 @@
 package me.aofz.tasklist.database
 
+import android.os.BadParcelableException
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "task_table")
 data class Task(
-
     @PrimaryKey(autoGenerate = true)
-    val id: Long?,
+    var id: Long=0,
 
     @ColumnInfo(name = "task_title")
-    val title: String?,
+    var title: String?,
 
     @ColumnInfo(name = "task_description")
-    val description: String?
-
-)
+    var description: String?
+):Parcelable
