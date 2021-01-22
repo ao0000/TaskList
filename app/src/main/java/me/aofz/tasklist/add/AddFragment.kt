@@ -7,19 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import me.aofz.tasklist.ViewModelFactory
 import me.aofz.tasklist.database.Task
 import me.aofz.tasklist.databinding.AddFragmentBinding
-import me.aofz.tasklist.database.TaskRepository
+import me.aofz.tasklist.getViewModelFactory
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: AddFragmentBinding
-    private val viewmodel by viewModels<AddViewModel>{
-        val application = requireNotNull(this.activity).application
-        val taskRepository = TaskRepository.getInstance(application)
-        ViewModelFactory(taskRepository)
-    }
+    private val viewmodel by viewModels<AddViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +29,6 @@ class AddFragment : Fragment() {
         )
 
         binding.decideButton.setOnClickListener {
-//
             val task = Task(
                 title = binding.titleEdit.text.toString(),
                 description = binding.descriptionEdit.text.toString()

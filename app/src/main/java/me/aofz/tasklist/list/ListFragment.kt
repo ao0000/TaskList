@@ -9,18 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.R
-import me.aofz.tasklist.ViewModelFactory
 import me.aofz.tasklist.databinding.ListFragmentBinding
-import me.aofz.tasklist.database.TaskRepository
+import me.aofz.tasklist.getViewModelFactory
 
 class ListFragment : Fragment() {
 
     private lateinit var binding: ListFragmentBinding
-    private val viewmodel by viewModels<ListViewModel>{
-        val application = requireNotNull(this.activity).application
-        val taskRepository = TaskRepository.getInstance(application)
-        ViewModelFactory(taskRepository)
-    }
+
+    private val viewmodel by viewModels<ListViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +48,7 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
-    private fun onClick(view: View, position: Int){
-        viewmodel.navigateToDetailfragment(view,position)
+    private fun onClick(view: View, position: Int) {
+        viewmodel.navigateToDetailfragment(view, position)
     }
 }

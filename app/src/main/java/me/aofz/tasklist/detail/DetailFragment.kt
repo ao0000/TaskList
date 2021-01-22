@@ -8,19 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import me.aofz.tasklist.ViewModelFactory
 import me.aofz.tasklist.databinding.DetailFragmentBinding
-import me.aofz.tasklist.database.TaskRepository
+import me.aofz.tasklist.getViewModelFactory
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding: DetailFragmentBinding
-    private val viewmodel by viewModels<DetailViewModel> {
-        val application = requireNotNull(this.activity).application
-        val taskRepository = TaskRepository.getInstance(application)
-
-        ViewModelFactory(taskRepository)
-    }
+    private val viewmodel by viewModels<DetailViewModel> { getViewModelFactory() }
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -37,7 +31,7 @@ class DetailFragment : Fragment() {
             false
         )
 
-        binding.apply{
+        binding.apply {
             binding.titleText.text = content.title
             binding.descriptionText.text = content.description
         }

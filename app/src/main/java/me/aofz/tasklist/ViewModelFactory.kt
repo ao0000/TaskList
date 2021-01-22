@@ -16,26 +16,7 @@ class ViewModelFactory(private val taskRepository: TaskRepository) : ViewModelPr
             isAssignableFrom(AddViewModel::class.java) -> AddViewModel(taskRepository)
             isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(taskRepository)
             isAssignableFrom(ListViewModel::class.java) -> ListViewModel(taskRepository)
-            else -> throw IllegalArgumentException("Unknown viewmodel class : $(modelClass.name)")
+            else -> throw IllegalArgumentException("Unknown ViewModel class : $(modelClass.name)")
         }
     } as T
-
-//    override fun <T : ViewModel> create(
-//        key: String,
-//        modelClass: Class<T>,
-//        handle: SavedStateHandle
-//    ) = with(modelClass) {
-//        when {
-//            isAssignableFrom(StatisticsViewModel::class.java) ->
-//                StatisticsViewModel(tasksRepository)
-//            isAssignableFrom(TaskDetailViewModel::class.java) ->
-//                TaskDetailViewModel(tasksRepository)
-//            isAssignableFrom(AddEditTaskViewModel::class.java) ->
-//                AddEditTaskViewModel(tasksRepository)
-//            isAssignableFrom(TasksViewModel::class.java) ->
-//                TasksViewModel(tasksRepository, handle)
-//            else ->
-//                throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-//        }
-//    } as T
 }
