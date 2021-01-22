@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 class TaskRepository(context: Context) {
 
     private var database = TaskDatabase.getInstance(context).taskDatabaseDAO
-    var allTask: LiveData<List<Task>> = database.getTasks()
+    var allTask: LiveData<List<Task>> = database.observeTasks()
 
     companion object {
         private var instance: TaskRepository? = null
@@ -25,14 +25,14 @@ class TaskRepository(context: Context) {
     suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
             database.insertTask(task)
-            allTask = database.getTasks()
+            allTask = database.observeTasks()
         }
     }
 
     suspend fun delete(task: Task) {
         withContext(Dispatchers.IO) {
             database.deleteTask(task)
-            allTask = database.getTasks()
+            allTask = database.observeTasks()
         }
     }
 

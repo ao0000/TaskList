@@ -10,10 +10,7 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
     fun addTask(task: Task){
         runBlocking {
-            Log.d("AddViewModel", " will insert")
             taskRepository.insert(task)
-
-            Log.d("AddViewModel", " end insert")
         }
     }
 }
