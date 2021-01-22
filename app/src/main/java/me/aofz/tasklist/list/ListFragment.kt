@@ -46,8 +46,7 @@ class ListFragment : Fragment() {
     }
 
     private fun onItemClick(view: View, position: Int) {
-        val action = ListFragmentDirections.actionListFragmentToDetailFragment(position)
-        view.findNavController().navigate(action)
+        viewmodel.navigateToDetailfragment(view, position)
     }
 
 }
