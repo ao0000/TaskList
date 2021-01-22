@@ -21,7 +21,11 @@
         android:id="@+id/detailFragment"
         android:name="me.aofz.tasklist.detail.DetailFragment"
         tools:layout="@layout/detail_fragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="me.aofz.tasklist.add.AddFragment"

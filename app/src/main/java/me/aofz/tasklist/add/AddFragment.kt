@@ -12,7 +12,7 @@ import me.aofz.tasklist.databinding.AddFragmentBinding
 class AddFragment : Fragment() {
 
     private lateinit var binding: AddFragmentBinding
-    private val viewmodel by viewModels<AddViewModel>()
+    private val addViewmodel by viewModels<AddViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

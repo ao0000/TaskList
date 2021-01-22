@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.R
 import me.aofz.tasklist.database.Task
@@ -28,12 +30,13 @@ class ListFragment : Fragment() {
             false
         )
 
-//        binding.taskRecyclerView.also {
-//            // tmp data
-//            val data = listOf<Task>(Task(id=0　,title = "sampleTitel",description = "sampleDescription"))
-//
-//            it.adapter = ListRecyclerAdapter(data, this@ListFragment::onItemClick)
-//        }
+        binding.taskRecyclerView.also {
+            // tmp data
+            val data =
+                listOf<Task>(Task(id = 0, title = "sampleTitle", description = "sampleDescription"))
+
+            it.adapter = ListRecyclerAdapter(data, this@ListFragment::onItemClick)
+        }
 
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -42,8 +45,9 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
-//    private fun onItemClick: (view: View, position: Int){
-//
-//    }
+    private fun onItemClick(view: View, position: Int) {
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(position)
+        view.findNavController().navigate(action)
+    }
 
 }
