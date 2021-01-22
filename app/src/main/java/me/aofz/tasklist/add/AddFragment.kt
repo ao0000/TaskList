@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import me.aofz.tasklist.ViewModelFactory
 import me.aofz.tasklist.database.Task
 import me.aofz.tasklist.databinding.AddFragmentBinding
-import me.aofz.tasklist.repository.TaskRepository
+import me.aofz.tasklist.database.TaskRepository
 
 class AddFragment : Fragment() {
 
@@ -17,7 +18,7 @@ class AddFragment : Fragment() {
     private val viewmodel by viewModels<AddViewModel>{
         val application = requireNotNull(this.activity).application
         val taskRepository = TaskRepository.getInstance(application)
-        AddViewModelFractory(taskRepository)
+        ViewModelFactory(taskRepository)
     }
 
     override fun onCreateView(

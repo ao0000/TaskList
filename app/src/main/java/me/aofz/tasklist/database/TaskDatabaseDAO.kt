@@ -16,6 +16,6 @@ interface TaskDatabaseDAO {
     suspend fun deleteTask(vararg task: Task)
 
     @Query("SELECT * FROM task_table ORDER BY id DESC")
-    fun getAllTask(): LiveData<List<Task>>
+    fun getTasks(): LiveData<List<Task>>
 
 }

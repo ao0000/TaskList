@@ -1,6 +1,5 @@
 package me.aofz.tasklist.database
 
-import android.os.BadParcelableException
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import me.aofz.tasklist.ViewModelFactory
 import me.aofz.tasklist.databinding.DetailFragmentBinding
-import me.aofz.tasklist.repository.TaskRepository
+import me.aofz.tasklist.database.TaskRepository
 
 class DetailFragment : Fragment() {
 
@@ -18,7 +19,7 @@ class DetailFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val taskRepository = TaskRepository.getInstance(application)
 
-        DetailViewModelFactory(taskRepository)
+        ViewModelFactory(taskRepository)
     }
     private val args: DetailFragmentArgs by navArgs()
 

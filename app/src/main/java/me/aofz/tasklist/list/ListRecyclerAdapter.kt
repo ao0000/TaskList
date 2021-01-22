@@ -3,7 +3,6 @@ package me.aofz.tasklist.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
 import me.aofz.tasklist.database.Task
