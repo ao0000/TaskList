@@ -5,7 +5,7 @@
 
         <variable
             name="viewmodel"
-            type="me.aofz.tasklist.addtask.AddViewModel" />
+            type="me.aofz.tasklist.ui.addtask.AddViewModel" />
     </data>
 
     <LinearLayout

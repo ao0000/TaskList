@@ -5,7 +5,7 @@
     <data>
         <variable
             name="detailViewModel"
-            type="me.aofz.tasklist.detail.DetailViewModel" />
+            type="me.aofz.tasklist.ui.detail.DetailViewModel" />
 
     </data>
 

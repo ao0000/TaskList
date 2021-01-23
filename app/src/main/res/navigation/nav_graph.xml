@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="me.aofz.tasklist.list.ListFragment"
+        android:name="me.aofz.tasklist.ui.list.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/list_fragment">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="me.aofz.tasklist.detail.DetailFragment"
+        android:name="me.aofz.tasklist.ui.detail.DetailFragment"
         tools:layout="@layout/detail_fragment"
         android:label="DetailFragment" >
         <argument
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="me.aofz.tasklist.addtask.AddFragment"
+        android:name="me.aofz.tasklist.ui.addtask.AddFragment"
         android:label="AddFragment"
         tools:layout="@layout/add_fragment"/>
 </navigation>

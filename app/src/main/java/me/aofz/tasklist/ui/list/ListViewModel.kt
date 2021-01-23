@@ -1,4 +1,4 @@
-package me.aofz.tasklist.list
+package me.aofz.tasklist.ui.list
 
 import android.view.View
 import androidx.lifecycle.LiveData

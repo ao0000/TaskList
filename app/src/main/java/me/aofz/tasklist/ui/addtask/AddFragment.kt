@@ -1,4 +1,4 @@
-package me.aofz.tasklist.addtask
+package me.aofz.tasklist.ui.addtask
 
 import android.os.Bundle
 import android.view.LayoutInflater

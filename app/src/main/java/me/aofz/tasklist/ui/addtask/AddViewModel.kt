@@ -1,4 +1,4 @@
-package me.aofz.tasklist.addtask
+package me.aofz.tasklist.ui.addtask
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

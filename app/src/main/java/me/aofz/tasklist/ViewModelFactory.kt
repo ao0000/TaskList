@@ -2,10 +2,10 @@ package me.aofz.tasklist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import me.aofz.tasklist.addtask.AddViewModel
+import me.aofz.tasklist.ui.addtask.AddViewModel
 import me.aofz.tasklist.database.TaskRepository
-import me.aofz.tasklist.detail.DetailViewModel
-import me.aofz.tasklist.list.ListViewModel
+import me.aofz.tasklist.ui.detail.DetailViewModel
+import me.aofz.tasklist.ui.list.ListViewModel
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory(private val taskRepository: TaskRepository) : ViewModelProvider.Factory {
