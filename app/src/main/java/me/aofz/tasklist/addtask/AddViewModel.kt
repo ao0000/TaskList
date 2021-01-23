@@ -2,7 +2,8 @@ package me.aofz.tasklist.addtask
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.runBlocking
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import me.aofz.tasklist.database.Task
 import me.aofz.tasklist.database.TaskRepository
 
@@ -16,7 +17,7 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
         val currentTitle = title.value ?: description.value ?: ""
         val currentDescription = description.value ?: ""
         val task = Task(title = currentTitle, description = currentDescription)
-        runBlocking {
+        viewModelScope.launch {
             taskRepository.insert(task)
         }
     }
