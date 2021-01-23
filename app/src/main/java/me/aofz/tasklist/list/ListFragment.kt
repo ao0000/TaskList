@@ -39,7 +39,6 @@ class ListFragment : Fragment() {
         })
 
 
-
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }

@@ -22,14 +22,12 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val content = args.TaskContent
-
-
         val binding = DetailFragmentBinding.inflate(
             inflater,
             container,
             false
         )
+        val content = args.TaskContent
 
         binding.apply {
             binding.titleText.text = content.title

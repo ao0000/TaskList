@@ -8,7 +8,6 @@ import me.aofz.tasklist.R
 import me.aofz.tasklist.database.Task
 
 class ListRecyclerAdapter(
-//    private val data: List<Task>,
     private val onItemClick: (view: View, position: Int) -> Unit
 ) :
     RecyclerView.Adapter<ListRecyclerViewHolder>() {
