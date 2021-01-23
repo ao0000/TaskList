@@ -1,4 +1,4 @@
-package me.aofz.tasklist.add
+package me.aofz.tasklist.addtask
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import me.aofz.tasklist.database.Task
 import me.aofz.tasklist.databinding.AddFragmentBinding
 import me.aofz.tasklist.getViewModelFactory
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: AddFragmentBinding
-    private val viewmodel by viewModels<AddViewModel> { getViewModelFactory() }
+    private val addViewModel by viewModels<AddViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +27,10 @@ class AddFragment : Fragment() {
             false
         )
 
+        binding.viewmodel = addViewModel
+
         binding.decideButton.setOnClickListener {
-            val task = Task(
-                title = binding.titleEdit.text.toString(),
-                description = binding.descriptionEdit.text.toString()
-            )
-            viewmodel.addTask(task)
+            addViewModel.addTask()
             findNavController().popBackStack()
         }
 

@@ -2,7 +2,7 @@ package me.aofz.tasklist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import me.aofz.tasklist.add.AddViewModel
+import me.aofz.tasklist.addtask.AddViewModel
 import me.aofz.tasklist.database.TaskRepository
 import me.aofz.tasklist.detail.DetailViewModel
 import me.aofz.tasklist.list.ListViewModel

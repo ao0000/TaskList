@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="me.aofz.tasklist.add.AddFragment"
+        android:name="me.aofz.tasklist.addtask.AddFragment"
         android:label="AddFragment"
         tools:layout="@layout/add_fragment"/>
 </navigation>
