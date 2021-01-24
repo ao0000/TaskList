@@ -1,14 +1,12 @@
-package me.aofz.tasklist.database
+package me.aofz.tasklist.data.db
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
+import me.aofz.tasklist.model.Task
 
-@Parcelize
 @Entity(tableName = "task_table")
-data class Task(
+data class TaskEntity(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "task_id")
@@ -20,4 +18,6 @@ data class Task(
     @ColumnInfo(name = "task_description")
     var description: String = ""
 
-) : Parcelable
+) {
+    fun toTask() = Task(id, title, description)
+}

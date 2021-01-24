@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import me.aofz.tasklist.databinding.DetailFragmentBinding
-import me.aofz.tasklist.getViewModelFactory
+import me.aofz.tasklist.ext.getViewModelFactory
 
 class DetailFragment : Fragment() {
 
@@ -27,15 +27,15 @@ class DetailFragment : Fragment() {
             container,
             false
         )
-        val content = args.TaskContent
+        val task = args.taskContent
 
         binding.apply {
-            binding.titleText.text = content.title
-            binding.descriptionText.text = content.description
+            binding.titleText.text = task.title
+            binding.descriptionText.text = task.description
         }
 
         binding.deleteButton.setOnClickListener {
-            viewmodel.deleteTask(content)
+            viewmodel.deleteTask(task)
             findNavController().popBackStack()
         }
 

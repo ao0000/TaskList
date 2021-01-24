@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
-import me.aofz.tasklist.getViewModelFactory
+import me.aofz.tasklist.ext.getViewModelFactory
 
 class ListFragment : Fragment() {
 
@@ -48,6 +48,6 @@ class ListFragment : Fragment() {
     }
 
     private fun onClick(view: View, position: Int) {
-        viewmodel.navigateToDetailfragment(view, position)
+        viewmodel.navigateToDetailFragment(view, position)
     }
 }
