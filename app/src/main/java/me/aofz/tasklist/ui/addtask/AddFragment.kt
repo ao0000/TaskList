@@ -20,7 +20,6 @@ class AddFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding = AddFragmentBinding.inflate(
             inflater,
             container,
