@@ -27,15 +27,15 @@ class DetailFragment : Fragment() {
             container,
             false
         )
-        val task = args.taskContent
+        val argTask = args.taskContent
 
         binding.apply {
-            binding.titleText.text = task.title
-            binding.descriptionText.text = task.description
+            binding.titleText.text = argTask.title
+            binding.descriptionText.text = argTask.description
         }
 
         binding.deleteButton.setOnClickListener {
-            viewmodel.deleteTask(task)
+            viewmodel.deleteTask(argTask)
             findNavController().popBackStack()
         }
 

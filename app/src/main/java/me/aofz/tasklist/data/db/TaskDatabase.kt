@@ -21,7 +21,6 @@ abstract class TaskDatabase : RoomDatabase() {
                 "task_database"
             )
                 .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
                 .build()
                 .also {
                     INSTANCE = it
