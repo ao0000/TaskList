@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.databinding.AddFragmentBinding
-import me.aofz.tasklist.getViewModelFactory
+import me.aofz.tasklist.ext.getViewModelFactory
 
 class AddFragment : Fragment() {
 

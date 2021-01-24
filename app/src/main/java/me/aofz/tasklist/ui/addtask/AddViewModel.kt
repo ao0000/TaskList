@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import me.aofz.tasklist.database.Task
-import me.aofz.tasklist.database.TaskRepository
+import me.aofz.tasklist.data.repository.TaskRepository
+import me.aofz.tasklist.model.Task
 
 class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
@@ -16,7 +16,11 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
     fun addTask() {
         val currentTitle = title.value ?: description.value ?: ""
         val currentDescription = description.value ?: ""
-        val task = Task(title = currentTitle, description = currentDescription)
+        val task = Task(
+            id = 0,
+            title = currentTitle,
+            description = currentDescription
+        )
         viewModelScope.launch {
             taskRepository.insert(task)
         }

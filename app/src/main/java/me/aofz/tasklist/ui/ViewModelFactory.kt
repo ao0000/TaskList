@@ -1,9 +1,9 @@
-package me.aofz.tasklist
+package me.aofz.tasklist.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import me.aofz.tasklist.ui.addtask.AddViewModel
-import me.aofz.tasklist.database.TaskRepository
+import me.aofz.tasklist.data.repository.TaskRepository
 import me.aofz.tasklist.ui.detail.DetailViewModel
 import me.aofz.tasklist.ui.list.ListViewModel
 import java.lang.IllegalArgumentException

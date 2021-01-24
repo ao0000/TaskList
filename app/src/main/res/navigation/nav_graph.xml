@@ -23,8 +23,8 @@
         tools:layout="@layout/detail_fragment"
         android:label="DetailFragment" >
         <argument
-            android:name="TaskContent"
-            app:argType="me.aofz.tasklist.database.Task" />
+            android:name="taskContent"
+            app:argType="me.aofz.tasklist.model.Task" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"

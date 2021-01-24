@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
-import me.aofz.tasklist.database.Task
+import me.aofz.tasklist.data.db.TaskEntity
 
 class ListRecyclerAdapter(
     private val onItemClick: (view: View, position: Int) -> Unit
 ) :
     RecyclerView.Adapter<ListRecyclerViewHolder>() {
-    private var data = emptyList<Task>()
+    private var data = emptyList<TaskEntity>()
 
-    fun setData(data: List<Task>){
+    fun setData(data: List<TaskEntity>){
         this.data = data
         notifyDataSetChanged()
     }
