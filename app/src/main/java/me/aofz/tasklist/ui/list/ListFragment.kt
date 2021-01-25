@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
 import me.aofz.tasklist.ext.getViewModelFactory
+import me.aofz.tasklist.model.Task
 
 class ListFragment : Fragment() {
 
@@ -32,12 +33,7 @@ class ListFragment : Fragment() {
 
         val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
         binding.taskRecyclerView.adapter = listRecyclerAdapter
-
-
-        viewmodel.allTask.observe(viewLifecycleOwner, Observer {
-            listRecyclerAdapter.setData(it)
-        })
-
+        subscribeUI(listRecyclerAdapter)
 
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -47,7 +43,15 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
-    private fun onClick(view: View, position: Int) {
-        viewmodel.navigateToDetailFragment(view, position)
+    private fun subscribeUI(adapter: ListRecyclerAdapter) {
+        viewmodel.allTask.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
     }
+
+    private fun onClick(view: View, task: Task) {
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(task)
+        findNavController().navigate(action)
+    }
+
 }
