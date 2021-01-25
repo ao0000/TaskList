@@ -3,6 +3,7 @@ package me.aofz.tasklist.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
 import me.aofz.tasklist.data.db.TaskEntity
@@ -10,7 +11,7 @@ import me.aofz.tasklist.data.db.TaskEntity
 class ListRecyclerAdapter(
     private val onItemClick: (view: View, position: Int) -> Unit
 ) :
-    RecyclerView.Adapter<ListRecyclerViewHolder>() {
+    RecyclerView.Adapter<ListRecyclerAdapter.ListRecyclerViewHolder>() {
     private var data = emptyList<TaskEntity>()
 
     fun setData(data: List<TaskEntity>){
@@ -35,5 +36,10 @@ class ListRecyclerAdapter(
         }
 
     }
+    class ListRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
+        val titleTextView: TextView = view.findViewById(R.id.list_title_text)
+        val descriptionTextView: TextView = view.findViewById(R.id.list_description_text)
+
+    }
 }
