@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
-import me.aofz.tasklist.data.db.TaskEntity
+import me.aofz.tasklist.model.Task
 
 class ListRecyclerAdapter(
     private val onItemClick: (view: View, position: Int) -> Unit
 ) :
     RecyclerView.Adapter<ListRecyclerAdapter.ListRecyclerViewHolder>() {
-    private var data = emptyList<TaskEntity>()
+    private var data = emptyList<Task>()
 
-    fun setData(data: List<TaskEntity>){
+    fun setData(data: List<Task>){
         this.data = data
         notifyDataSetChanged()
     }
@@ -42,4 +42,5 @@ class ListRecyclerAdapter(
         val descriptionTextView: TextView = view.findViewById(R.id.list_description_text)
 
     }
+
 }

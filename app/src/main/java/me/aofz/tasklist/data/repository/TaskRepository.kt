@@ -2,18 +2,15 @@ package me.aofz.tasklist.data.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import me.aofz.tasklist.data.db.TaskEntity
 import me.aofz.tasklist.data.db.TaskDatabase
 import me.aofz.tasklist.model.Task
 
 class TaskRepository(context: Context) {
 
-    private var database = TaskDatabase.getInstance(
-        context
-    ).taskDatabaseDAO
-    var allTask: LiveData<List<TaskEntity>> = database.observeTasks()
+    private var database = TaskDatabase.getInstance(context).taskDatabaseDAO
 
     companion object {
         private var instance: TaskRepository? = null
@@ -29,17 +26,23 @@ class TaskRepository(context: Context) {
             }
     }
 
+    fun getTasks(): LiveData<List<Task>> {
+        val listTasks = database.observeTasks().value?.map { it.toTask() }
+        val mutableLivedataTasks = MutableLiveData<List<Task>>()
+        mutableLivedataTasks.value = listTasks
+        val liveDataTasks: LiveData<List<Task>> = mutableLivedataTasks as LiveData<List<Task>>
+        return liveDataTasks
+    }
+
     suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
             database.insertTask(task.toEntity())
-            allTask = database.observeTasks()
         }
     }
 
     suspend fun delete(task: Task) {
         withContext(Dispatchers.IO) {
             database.deleteTask(task.toEntity())
-            allTask = database.observeTasks()
         }
     }
 
