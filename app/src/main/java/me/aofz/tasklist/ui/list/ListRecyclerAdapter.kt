@@ -3,41 +3,34 @@ package me.aofz.tasklist.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.R
+import me.aofz.tasklist.databinding.ListItemBinding
 import me.aofz.tasklist.model.Task
 
 class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit) :
-    RecyclerView.Adapter<ListRecyclerAdapter.ListViewHolder>() {
-
-    var data = emptyList<Task>()
-
-    fun submitList(data: List<Task>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
+    ListAdapter<Task, ListRecyclerAdapter.ListViewHolder>(SleepNightDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder.from(parent)
     }
 
-    override fun getItemCount(): Int = data.size
-
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(data[position], onClick)
+        val item = getItem(position)
+        holder.bind(item, onClick)
     }
 
-    class ListViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title: TextView = itemView.findViewById(R.id.list_title_text)
-        val description: TextView = itemView.findViewById(R.id.list_description_text)
+    class ListViewHolder private constructor(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Task, onClick: (view: View, task: Task) -> Unit){
-            title.text = data.title
-            description.text = data.description
-            itemView.setOnClickListener{
+        fun bind(task: Task, onClick: (view: View, task: Task) -> Unit){
+            binding.listTitleText.text = task.title
+            binding.listDescriptionText.text = task.description
+            binding.root.setOnClickListener {
                 it?.let{
-                    onClick(it, data)
+                    onClick(it, task)
                 }
             }
         }
@@ -45,9 +38,19 @@ class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit)
         companion object{
             fun from(parent: ViewGroup): ListViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val itemView = layoutInflater.inflate(R.layout.list_item, parent, false)
-                return ListViewHolder(itemView)
+                val binding = ListItemBinding.inflate(layoutInflater, parent, false)
+                return ListViewHolder(binding)
             }
         }
+    }
+}
+
+class SleepNightDiffCallback: DiffUtil.ItemCallback<Task>(){
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
+        return oldItem.id   == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+        return oldItem == newItem
     }
 }
