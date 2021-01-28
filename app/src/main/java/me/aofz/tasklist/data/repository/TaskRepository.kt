@@ -3,9 +3,11 @@ package me.aofz.tasklist.data.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.aofz.tasklist.data.db.TaskDatabase
+import me.aofz.tasklist.data.db.TaskEntity
 import me.aofz.tasklist.model.Task
 
 class TaskRepository(context: Context) {
@@ -27,11 +29,16 @@ class TaskRepository(context: Context) {
     }
 
     fun getTasks(): LiveData<List<Task>> {
-        val listTasks = database.observeTasks().value?.map { it.toTask() }
-        val mutableLivedataTasks = MutableLiveData<List<Task>>()
-        mutableLivedataTasks.value = listTasks
-        val liveDataTasks: LiveData<List<Task>> = mutableLivedataTasks as LiveData<List<Task>>
-        return liveDataTasks
+//        val listTasks = database.observeTasks().value?.map { it.toTask() }
+//        val mutableLivedataTasks = MutableLiveData<List<Task>>()
+//        mutableLivedataTasks.value = listTasks
+//        val liveDataTasks: LiveData<List<Task>> = mutableLivedataTasks
+//        return liveDataTasks
+        return Transformations.map(database.observeTasks()){
+            it?.map {entity->
+                entity.toTask()
+            }
+        }
     }
 
     suspend fun insert(task: Task) {

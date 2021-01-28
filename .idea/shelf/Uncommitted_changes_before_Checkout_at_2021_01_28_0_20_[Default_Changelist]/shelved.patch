@@ -1,0 +1,61 @@
+Index: app/src/main/java/me/aofz/tasklist/ui/list/ListRecyclerAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package me.aofz.tasklist.ui.list\n\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.recyclerview.widget.RecyclerView\nimport me.aofz.tasklist.R\nimport me.aofz.tasklist.data.db.TaskEntity\n\nclass ListRecyclerAdapter(\n    private val onItemClick: (view: View, position: Int) -> Unit\n) :\n    RecyclerView.Adapter<ListRecyclerViewHolder>() {\n    private var data = emptyList<TaskEntity>()\n\n    fun setData(data: List<TaskEntity>){\n        this.data = data\n        notifyDataSetChanged()\n    }\n\n    override fun getItemCount(): Int = data.size\n\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRecyclerViewHolder {\n        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)\n\n        return ListRecyclerViewHolder(view)\n    }\n\n    override fun onBindViewHolder(holder: ListRecyclerViewHolder, position: Int) {\n\n        holder.titleTextView.text = data[position].title\n        holder.descriptionTextView.text = data[position].description\n        holder.itemView.setOnClickListener{\n            onItemClick(it, position)\n        }\n\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/me/aofz/tasklist/ui/list/ListRecyclerAdapter.kt	(revision 1ae5add2996e34106036f40591751254793ff831)
++++ app/src/main/java/me/aofz/tasklist/ui/list/ListRecyclerAdapter.kt	(date 1611760748000)
+@@ -7,25 +7,29 @@
+ import me.aofz.tasklist.R
+ import me.aofz.tasklist.data.db.TaskEntity
+ 
++// データを保持するクラスをジェネリクスにいれる
+ class ListRecyclerAdapter(
+     private val onItemClick: (view: View, position: Int) -> Unit
+ ) :
+     RecyclerView.Adapter<ListRecyclerViewHolder>() {
++    // リストのデータを更新するメソッドを書く
+     private var data = emptyList<TaskEntity>()
+-
+     fun setData(data: List<TaskEntity>){
+         this.data = data
+         notifyDataSetChanged()
+     }
+ 
++    // リストの数を取得するメソッド
+     override fun getItemCount(): Int = data.size
+ 
++    // リストのlayoutを作成してviewを返すメソッド
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRecyclerViewHolder {
+         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+ 
+         return ListRecyclerViewHolder(view)
+     }
+ 
++    // 作成されたviewにデータをいれる
+     override fun onBindViewHolder(holder: ListRecyclerViewHolder, position: Int) {
+ 
+         holder.titleTextView.text = data[position].title
+Index: app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package me.aofz.tasklist.ui.list\n\nimport android.os.Bundle\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.fragment.app.Fragment\nimport androidx.fragment.app.viewModels\nimport androidx.lifecycle.Observer\nimport androidx.navigation.fragment.findNavController\nimport me.aofz.tasklist.R\nimport me.aofz.tasklist.databinding.ListFragmentBinding\nimport me.aofz.tasklist.ext.getViewModelFactory\n\nclass ListFragment : Fragment() {\n\n    private lateinit var binding: ListFragmentBinding\n\n    private val viewmodel by viewModels<ListViewModel> { getViewModelFactory() }\n\n    override fun onCreateView(\n        inflater: LayoutInflater,\n        container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n\n        binding = ListFragmentBinding.inflate(\n            inflater,\n            container,\n            false\n        )\n        setAdapter()\n\n        return binding.root\n    }\n\n    private fun setAdapter() {\n        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)\n        binding.taskRecyclerView.adapter = listRecyclerAdapter\n\n        viewmodel.allTask.observe(viewLifecycleOwner, Observer {\n            listRecyclerAdapter.setData(it)\n        })\n    }\n\n    override fun onActivityCreated(savedInstanceState: Bundle?) {\n        super.onActivityCreated(savedInstanceState)\n        setUpAddButton()\n    }\n\n    private fun setUpAddButton() {\n        binding.addButton.setOnClickListener {\n            findNavController().navigate(R.id.action_listFragment_to_addFragment)\n        }\n    }\n\n    private fun onClick(view: View, position: Int) {\n        viewmodel.navigateToDetailFragment(view, position)\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt	(revision 1ae5add2996e34106036f40591751254793ff831)
++++ app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt	(date 1611760748000)
+@@ -35,9 +35,11 @@
+     }
+ 
+     private fun setAdapter() {
++        // アダプターを生成してlayoutにいれる
+         val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
+         binding.taskRecyclerView.adapter = listRecyclerAdapter
+ 
++        // データの変更を受け取って更新
+         viewmodel.allTask.observe(viewLifecycleOwner, Observer {
+             listRecyclerAdapter.setData(it)
+         })

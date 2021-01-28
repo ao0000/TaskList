@@ -1,0 +1,22 @@
+Index: app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package me.aofz.tasklist.ui.list\n\nimport android.os.Bundle\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.fragment.app.Fragment\nimport androidx.fragment.app.viewModels\nimport androidx.lifecycle.Observer\nimport androidx.navigation.fragment.findNavController\nimport me.aofz.tasklist.R\nimport me.aofz.tasklist.databinding.ListFragmentBinding\nimport me.aofz.tasklist.ext.getViewModelFactory\nimport me.aofz.tasklist.model.Task\n\nclass ListFragment : Fragment() {\n\n    private lateinit var binding: ListFragmentBinding\n\n    private val viewmodel by viewModels<ListViewModel> { getViewModelFactory() }\n\n    override fun onCreateView(\n        inflater: LayoutInflater,\n        container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n\n        binding = ListFragmentBinding.inflate(\n            inflater,\n            container,\n            false\n        )\n\n        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)\n        binding.taskRecyclerView.adapter = listRecyclerAdapter\n        subscribeUI(listRecyclerAdapter)\n\n        binding.addButton.setOnClickListener {\n            findNavController().navigate(R.id.action_listFragment_to_addFragment)\n        }\n\n\n        return binding.root\n    }\n\n    private fun subscribeUI(adapter: ListRecyclerAdapter) {\n        viewmodel.allTask.observe(viewLifecycleOwner, Observer {\n            adapter.submitList(it)\n        })\n    }\n\n    private fun onClick(view: View, task: Task) {\n        val action = ListFragmentDirections.actionListFragmentToDetailFragment(task)\n        findNavController().navigate(action)\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt	(revision b546876641d8b776cfaca88c905b1c5ec4b510bc)
++++ app/src/main/java/me/aofz/tasklist/ui/list/ListFragment.kt	(date 1611759632000)
+@@ -31,9 +31,9 @@
+             false
+         )
+ 
+-        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
+-        binding.taskRecyclerView.adapter = listRecyclerAdapter
+-        subscribeUI(listRecyclerAdapter)
++//        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
++//        binding.taskRecyclerView.adapter = listRecyclerAdapter
++//        subscribeUI(listRecyclerAdapter)
+ 
+         binding.addButton.setOnClickListener {
+             findNavController().navigate(R.id.action_listFragment_to_addFragment)

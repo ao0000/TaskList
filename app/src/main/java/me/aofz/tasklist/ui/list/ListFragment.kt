@@ -30,6 +30,7 @@ class ListFragment : Fragment() {
             container,
             false
         )
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
         binding.taskRecyclerView.adapter = listRecyclerAdapter
@@ -45,7 +46,9 @@ class ListFragment : Fragment() {
 
     private fun subscribeUI(adapter: ListRecyclerAdapter) {
         viewmodel.allTask.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            it?.let{
+                adapter.submitList(it)
+            }
         })
     }
 
