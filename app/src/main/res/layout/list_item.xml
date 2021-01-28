@@ -16,6 +16,7 @@
 
         <TextView
             android:id="@+id/list_title_text"
+            setItemTitle="@{task}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -24,6 +25,7 @@
 
         <TextView
             android:id="@+id/list_description_text"
+            setItemDescription="@{task}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

@@ -52,6 +52,9 @@ dependencies {
     // android ktx
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
+    // recycler view
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
 
     // Room
     implementation "androidx.room:room-runtime:2.2.5"

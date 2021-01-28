@@ -29,8 +29,8 @@ class TaskRepository(context: Context) {
     }
 
     fun getTasks(): LiveData<List<Task>> {
-        return Transformations.map(database.observeTasks()){
-            it?.map {entity->
+        return Transformations.map(database.observeTasks()) {
+            it?.map { entity ->
                 entity.toTask()
             }
         }

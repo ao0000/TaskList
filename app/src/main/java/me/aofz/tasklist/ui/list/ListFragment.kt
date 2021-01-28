@@ -29,24 +29,36 @@ class ListFragment : Fragment() {
             inflater,
             container,
             false
-        )
-        binding.lifecycleOwner = viewLifecycleOwner
-
-        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
-        binding.taskRecyclerView.adapter = listRecyclerAdapter
-        subscribeUI(listRecyclerAdapter)
-
-        binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
+        ).apply {
+            lifecycleOwner = viewLifecycleOwner
         }
-
 
         return binding.root
     }
 
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setUpRecyclerAdapter()
+        setUpAddButton()
+    }
+
+    private fun setUpRecyclerAdapter() {
+        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
+        binding.taskRecyclerView.adapter = listRecyclerAdapter
+        subscribeUI(listRecyclerAdapter)
+    }
+
+
+    private fun setUpAddButton() {
+        binding.addButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_addFragment)
+        }
+    }
+
     private fun subscribeUI(adapter: ListRecyclerAdapter) {
         viewmodel.allTask.observe(viewLifecycleOwner, Observer {
-            it?.let{
+            it?.let {
                 adapter.submitList(it)
             }
         })

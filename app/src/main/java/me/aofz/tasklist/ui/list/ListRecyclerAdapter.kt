@@ -3,11 +3,9 @@ package me.aofz.tasklist.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListItemBinding
 import me.aofz.tasklist.model.Task
 
@@ -44,7 +42,6 @@ class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit)
         }
     }
 }
-
 class SleepNightDiffCallback: DiffUtil.ItemCallback<Task>(){
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.id   == newItem.id
