@@ -26,13 +26,13 @@ class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit)
     class ListViewHolder private constructor(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task, onClick: (view: View, task: Task) -> Unit){
-            binding.listTitleText.text = task.title
-            binding.listDescriptionText.text = task.description
+            binding.task = task
             binding.root.setOnClickListener {
                 it?.let{
                     onClick(it, task)
                 }
             }
+            binding.executePendingBindings()
         }
 
         companion object{
