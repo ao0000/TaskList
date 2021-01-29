@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -18,28 +19,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:background="#00000000"
             android:hint="Title"
-            android:text="@={viewmodel.title}" />
+            android:text="@={viewmodel.title}"
+            android:textSize="32sp" />
 
         <EditText
             android:id="@+id/description_edit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:background="#00000000"
+            android:gravity="top"
             android:hint="Description"
             android:inputType="textMultiLine"
-            android:text="@={viewmodel.description}" />
+            android:text="@={viewmodel.description}"
+            android:textSize="24sp" />
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/decide_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/colorAccent"
-            android:text="add"
-            android:textColor="@color/design_default_color_surface" />
+            android:src="@drawable/ic_baseline_done_24"
+            android:tint="@color/design_default_color_surface"
+            app:fabSize="normal" />
 
     </LinearLayout>
 </layout>
