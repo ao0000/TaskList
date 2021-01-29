@@ -5,11 +5,11 @@ import androidx.databinding.BindingAdapter
 import me.aofz.tasklist.model.Task
 
 @BindingAdapter("setItemTitle")
-fun TextView.setItemTitle(item : Task){
+fun TextView.setItemTitle(item: Task) {
     text = item.title
 }
 
 @BindingAdapter("setItemDescription")
-fun TextView.setItemDescription(item :Task){
+fun TextView.setItemDescription(item: Task) {
     text = item.description
 }

@@ -15,16 +15,16 @@ abstract class TaskDatabase : RoomDatabase() {
 
         fun getInstance(context: Context) = INSTANCE
             ?: synchronized(this) {
-            INSTANCE ?: Room.databaseBuilder(
-                context.applicationContext,
-                TaskDatabase::class.java,
-                "task_database"
-            )
-                .fallbackToDestructiveMigration()
-                .build()
-                .also {
-                    INSTANCE = it
-                }
-        }
+                INSTANCE ?: Room.databaseBuilder(
+                    context.applicationContext,
+                    TaskDatabase::class.java,
+                    "task_database"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also {
+                        INSTANCE = it
+                    }
+            }
     }
 }

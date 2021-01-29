@@ -21,19 +21,20 @@ class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit)
         holder.bind(item, onClick)
     }
 
-    class ListViewHolder private constructor(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ListViewHolder private constructor(val binding: ListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(task: Task, onClick: (view: View, task: Task) -> Unit){
+        fun bind(task: Task, onClick: (view: View, task: Task) -> Unit) {
             binding.task = task
             binding.root.setOnClickListener {
-                it?.let{
+                it?.let {
                     onClick(it, task)
                 }
             }
             binding.executePendingBindings()
         }
 
-        companion object{
+        companion object {
             fun from(parent: ViewGroup): ListViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ListItemBinding.inflate(layoutInflater, parent, false)
@@ -42,9 +43,10 @@ class ListRecyclerAdapter(private val onClick: (view: View, task: Task) -> Unit)
         }
     }
 }
-class SleepNightDiffCallback: DiffUtil.ItemCallback<Task>(){
+
+class SleepNightDiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.id   == newItem.id
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {

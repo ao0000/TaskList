@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="me.aofz.tasklist.ui.detail.DetailFragment"
-        tools:layout="@layout/detail_fragment"
-        android:label="DetailFragment" >
+        android:label="DetailFragment"
+        tools:layout="@layout/detail_fragment">
         <argument
             android:name="taskContent"
             app:argType="me.aofz.tasklist.model.Task" />
@@ -30,5 +30,5 @@
         android:id="@+id/addFragment"
         android:name="me.aofz.tasklist.ui.addtask.AddFragment"
         android:label="AddFragment"
-        tools:layout="@layout/add_fragment"/>
+        tools:layout="@layout/add_fragment" />
 </navigation>

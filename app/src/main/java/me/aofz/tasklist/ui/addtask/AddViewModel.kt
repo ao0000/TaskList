@@ -9,6 +9,7 @@ import me.aofz.tasklist.model.Task
 
 class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
+    // Two-way binding
     val title = MutableLiveData<String>()
     val description = MutableLiveData<String>()
 
