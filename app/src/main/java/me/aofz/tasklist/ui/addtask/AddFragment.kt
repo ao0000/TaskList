@@ -24,15 +24,17 @@ class AddFragment : Fragment() {
             inflater,
             container,
             false
-        )
+        ).apply {
+            viewModel = addViewModel
+        }
+        return binding.root
+    }
 
-        binding.viewmodel = addViewModel
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.decideButton.setOnClickListener {
             addViewModel.addTask()
             findNavController().popBackStack()
         }
-
-        return binding.root
     }
 }

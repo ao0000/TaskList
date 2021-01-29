@@ -24,21 +24,16 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = ListFragmentBinding.inflate(
             inflater,
             container,
             false
-        ).apply {
-            lifecycleOwner = viewLifecycleOwner
-        }
-
+        )
         return binding.root
     }
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setUpRecyclerAdapter()
         setUpAddButton()
     }

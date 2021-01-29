@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="me.aofz.tasklist.ui.addtask.AddViewModel" />
     </data>
 
@@ -21,7 +21,7 @@
             android:layout_margin="8dp"
             android:background="#00000000"
             android:hint="Title"
-            android:text="@={viewmodel.title}"
+            android:text="@={viewModel.title}"
             android:textSize="32sp" />
 
         <EditText
@@ -34,7 +34,7 @@
             android:gravity="top"
             android:hint="Description"
             android:inputType="textMultiLine"
-            android:text="@={viewmodel.description}"
+            android:text="@={viewModel.description}"
             android:textSize="24sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

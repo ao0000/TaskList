@@ -22,11 +22,16 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DetailFragmentBinding.inflate(
+        binding = DetailFragmentBinding.inflate(
             inflater,
             container,
             false
         )
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val argTask = args.taskContent
 
         binding.apply {
@@ -39,6 +44,5 @@ class DetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        return binding.root
     }
 }
