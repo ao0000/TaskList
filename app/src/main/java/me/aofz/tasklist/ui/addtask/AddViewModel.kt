@@ -1,5 +1,6 @@
 package me.aofz.tasklist.ui.addtask
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,10 +14,15 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
     val title = MutableLiveData<String>()
     val description = MutableLiveData<String>()
 
+    private val _updateTask = MutableLiveData<Boolean>()
+    val updateTask: LiveData<Boolean>
+        get() = _updateTask
+
     fun addTask() {
         val currentTitle = title.value ?: description.value ?: ""
         val currentDescription = description.value ?: ""
-        if(currentTitle.isEmpty())return
+        if (currentTitle.isEmpty()) return
+
         val task = Task(
             title = currentTitle,
             description = currentDescription
@@ -24,5 +30,7 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
         viewModelScope.launch {
             taskRepository.insert(task)
         }
+
+        _updateTask.value = true
     }
 }

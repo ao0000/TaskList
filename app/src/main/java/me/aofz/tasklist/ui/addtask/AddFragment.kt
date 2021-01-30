@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import me.aofz.tasklist.databinding.AddFragmentBinding
 import me.aofz.tasklist.ext.getViewModelFactory
 
 class AddFragment : Fragment() {
 
-    private lateinit var binding: AddFragmentBinding
+    private lateinit var addFragmentBinding: AddFragmentBinding
     private val addViewModel by viewModels<AddViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
@@ -20,21 +21,26 @@ class AddFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = AddFragmentBinding.inflate(
+        addFragmentBinding = AddFragmentBinding.inflate(
             inflater,
             container,
             false
         ).apply {
             viewModel = addViewModel
         }
-        return binding.root
+        return addFragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.decideButton.setOnClickListener {
-            addViewModel.addTask()
-            findNavController().popBackStack()
-        }
+        setUpDecideButton()
+    }
+
+    private fun setUpDecideButton() {
+        addViewModel.updateTask.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().popBackStack()
+            }
+        })
     }
 }
