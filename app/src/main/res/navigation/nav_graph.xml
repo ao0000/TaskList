@@ -19,11 +19,11 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="me.aofz.tasklist.ui.detail.DetailFragment"
+        android:name="me.aofz.tasklist.ui.taskdetail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/detail_fragment">
         <argument
-            android:name="taskContent"
+            android:name="receivedTask"
             app:argType="me.aofz.tasklist.model.Task" />
     </fragment>
     <fragment
