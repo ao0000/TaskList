@@ -17,7 +17,6 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
         val currentTitle = title.value ?: description.value ?: ""
         val currentDescription = description.value ?: ""
         val task = Task(
-            id = 0,
             title = currentTitle,
             description = currentDescription
         )
