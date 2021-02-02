@@ -1,41 +1,26 @@
 package me.aofz.tasklist.ui.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.wada811.viewbinding.viewBinding
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
 import me.aofz.tasklist.ext.getViewModelFactory
 import me.aofz.tasklist.model.Task
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(R.layout.list_fragment) {
 
-    private lateinit var listFragmentBinding: ListFragmentBinding
+    private val listFragmentBinding by viewBinding(ListFragmentBinding::bind)
 
     private val listViewModel by viewModels<ListViewModel> { getViewModelFactory() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        listFragmentBinding = ListFragmentBinding.inflate(
-            inflater,
-            container,
-            false
-        ).apply {
-            viewModel = listViewModel
-        }
-        return listFragmentBinding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listFragmentBinding.viewModel = listViewModel
         setUpRecyclerAdapter()
         listViewModel.addButtonClicked.observe(viewLifecycleOwner, Observer {
             it?.let {
