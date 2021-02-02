@@ -15,44 +15,43 @@ import me.aofz.tasklist.model.Task
 
 class ListFragment : Fragment() {
 
-    private lateinit var binding: ListFragmentBinding
+    private lateinit var listFragmentBinding: ListFragmentBinding
 
-    private val viewmodel by viewModels<ListViewModel> { getViewModelFactory() }
+    private val listViewModel by viewModels<ListViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ListFragmentBinding.inflate(
+        listFragmentBinding = ListFragmentBinding.inflate(
             inflater,
             container,
             false
-        )
-        return binding.root
+        ).apply {
+            viewModel = listViewModel
+        }
+        return listFragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerAdapter()
-        setUpAddButton()
+        listViewModel.addButtonClicked.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(R.id.action_listFragment_to_addFragment)
+            }
+        })
     }
 
     private fun setUpRecyclerAdapter() {
         val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
-        binding.taskRecyclerView.adapter = listRecyclerAdapter
+        listFragmentBinding.listRecyclerView.adapter = listRecyclerAdapter
         subscribeUI(listRecyclerAdapter)
     }
 
-
-    private fun setUpAddButton() {
-        binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
-        }
-    }
-
     private fun subscribeUI(adapter: ListRecyclerAdapter) {
-        viewmodel.allTask.observe(viewLifecycleOwner, Observer {
+        listViewModel.allTask.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
