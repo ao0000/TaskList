@@ -14,9 +14,9 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
     val title = MutableLiveData<String>()
     val description = MutableLiveData<String>()
 
-    private val _updateTask = MutableLiveData<Boolean>()
-    val updateTask: LiveData<Boolean>
-        get() = _updateTask
+    private val _decideButtonClicked = MutableLiveData<Boolean>()
+    val decideButtonClicked: LiveData<Boolean>
+        get() = _decideButtonClicked
 
     fun addTask() {
         val currentTitle = title.value ?: description.value ?: ""
@@ -31,6 +31,6 @@ class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
             taskRepository.insert(task)
         }
 
-        _updateTask.value = true
+        _decideButtonClicked.value = true
     }
 }

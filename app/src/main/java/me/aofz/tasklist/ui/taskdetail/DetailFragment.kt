@@ -40,7 +40,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setUpDeleteButton() {
-        detailViewModel.taskDeleted.observe(viewLifecycleOwner, Observer {
+        detailViewModel.deleteButtonClicked.observe(viewLifecycleOwner, Observer {
             findNavController().popBackStack()
         })
     }

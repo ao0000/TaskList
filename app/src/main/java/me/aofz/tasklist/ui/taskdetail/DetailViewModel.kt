@@ -14,15 +14,15 @@ class DetailViewModel(private val taskRepository: TaskRepository) : ViewModel() 
     val task: LiveData<Task>
         get() = _task
 
-    private val _taskDeleted = MutableLiveData<Boolean>()
-    val taskDeleted: LiveData<Boolean>
-        get() = _taskDeleted
+    private val _deleteButtonClicked = MutableLiveData<Boolean>()
+    val deleteButtonClicked: LiveData<Boolean>
+        get() = _deleteButtonClicked
 
     fun deleteTask() {
         viewModelScope.launch {
             task.value?.let {
                 taskRepository.delete(it)
-                _taskDeleted.value = true
+                _deleteButtonClicked.value = true
             }
         }
     }

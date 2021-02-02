@@ -45,7 +45,7 @@ class ListFragment : Fragment() {
     }
 
     private fun setUpRecyclerAdapter() {
-        val listRecyclerAdapter = ListRecyclerAdapter(this@ListFragment::onClick)
+        val listRecyclerAdapter = ListRecyclerAdapter(this::onClick)
         listFragmentBinding.listRecyclerView.adapter = listRecyclerAdapter
         subscribeUI(listRecyclerAdapter)
     }

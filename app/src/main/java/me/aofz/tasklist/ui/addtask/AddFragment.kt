@@ -37,7 +37,7 @@ class AddFragment : Fragment() {
     }
 
     private fun setUpDecideButton() {
-        addViewModel.updateTask.observe(viewLifecycleOwner, Observer {
+        addViewModel.decideButtonClicked.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().popBackStack()
             }
