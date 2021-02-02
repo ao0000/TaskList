@@ -42,6 +42,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    // livedata ktx
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.2"
@@ -49,7 +52,7 @@ dependencies {
     // Material
     implementation 'com.google.android.material:material:1.2.1'
 
-    // android ktx
+    // fragment ktx
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
     // recycler view
