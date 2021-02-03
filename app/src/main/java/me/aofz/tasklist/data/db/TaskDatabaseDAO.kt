@@ -1,7 +1,7 @@
 package me.aofz.tasklist.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDatabaseDAO {
@@ -13,10 +13,7 @@ interface TaskDatabaseDAO {
     suspend fun updateTask(vararg taskEntity: TaskEntity)
 
     @Query("SELECT * FROM task_table ORDER BY task_id ASC")
-    fun observeTasks(): LiveData<List<TaskEntity>>
-
-    @Query("SELECT * FROM task_table WHERE task_id = :taskId")
-    fun observeTaskById(taskId: Long): LiveData<TaskEntity>
+    fun observeTasks(): Flow<List<TaskEntity>>
 
     @Delete
     suspend fun deleteTask(vararg task: TaskEntity)

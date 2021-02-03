@@ -5,7 +5,7 @@ import me.aofz.tasklist.data.repository.TaskRepository
 import me.aofz.tasklist.model.Task
 
 class ListViewModel(taskRepository: TaskRepository) : ViewModel() {
-    val allTask: LiveData<List<Task>> = taskRepository.getTasks()
+    val allTask: LiveData<List<Task>> = taskRepository.getTasks().asLiveData()
 
     private val _addButtonClicked = MutableLiveData<Boolean>()
     val addButtonClicked: LiveData<Boolean>

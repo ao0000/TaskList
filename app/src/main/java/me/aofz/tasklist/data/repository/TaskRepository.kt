@@ -1,9 +1,9 @@
 package me.aofz.tasklist.data.repository
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import me.aofz.tasklist.data.db.TaskDatabase
 import me.aofz.tasklist.model.Task
@@ -26,9 +26,9 @@ class TaskRepository(context: Context) {
             }
     }
 
-    fun getTasks(): LiveData<List<Task>> {
+    fun getTasks(): Flow<List<Task>> {
         return database.observeTasks().map {
-            it?.map { taskEntity ->
+            it.map {taskEntity ->
                 taskEntity.toTask()
             }
         }
