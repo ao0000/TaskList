@@ -13,5 +13,4 @@ class Application : Application() {
             modules(AppComponent)
         }
     }
-
 }
