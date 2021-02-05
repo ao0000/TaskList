@@ -3,6 +3,7 @@
     package="me.aofz.tasklist">
 
     <application
+        android:name=".Application"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

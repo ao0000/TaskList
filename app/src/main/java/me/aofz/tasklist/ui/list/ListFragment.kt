@@ -3,20 +3,18 @@ package me.aofz.tasklist.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.wada811.viewbinding.viewBinding
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
-import me.aofz.tasklist.ext.getViewModelFactory
 import me.aofz.tasklist.model.Task
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ListFragment : Fragment(R.layout.list_fragment) {
 
     private val listFragmentBinding by viewBinding(ListFragmentBinding::bind)
-
-    private val listViewModel by viewModels<ListViewModel> { getViewModelFactory() }
+    private val listViewModel by viewModel<ListViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
