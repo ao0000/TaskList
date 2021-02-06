@@ -1,10 +1,10 @@
-package me.aofz.tasklist.data.repository
+package me.aofz.tasklist.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import me.aofz.tasklist.data.db.TaskDatabaseDAO
+import me.aofz.tasklist.repository.db.TaskDatabaseDAO
 import me.aofz.tasklist.model.Task
 
 class TaskRepository(private val database: TaskDatabaseDAO) {

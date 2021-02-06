@@ -1,7 +1,7 @@
 package me.aofz.tasklist.di
 
 import androidx.room.Room
-import me.aofz.tasklist.data.db.TaskDatabase
+import me.aofz.tasklist.repository.db.TaskDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

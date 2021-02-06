@@ -1,6 +1,6 @@
 package me.aofz.tasklist.di
 
-import me.aofz.tasklist.data.repository.TaskRepository
+import me.aofz.tasklist.repository.TaskRepository
 import org.koin.dsl.module
 
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import me.aofz.tasklist.data.repository.TaskRepository
+import me.aofz.tasklist.repository.TaskRepository
 import me.aofz.tasklist.model.Task
 
 class DetailViewModel(private val taskRepository: TaskRepository) : ViewModel() {

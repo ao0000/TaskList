@@ -1,4 +1,4 @@
-package me.aofz.tasklist.ui.list
+package me.aofz.tasklist.ui.tasklist
 
 import androidx.recyclerview.widget.DiffUtil
 import me.aofz.tasklist.model.Task

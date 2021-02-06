@@ -2,7 +2,7 @@ package me.aofz.tasklist.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import me.aofz.tasklist.data.db.TaskEntity
+import me.aofz.tasklist.repository.db.TaskEntity
 
 @Parcelize
 data class Task(

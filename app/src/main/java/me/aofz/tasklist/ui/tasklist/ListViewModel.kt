@@ -1,7 +1,7 @@
-package me.aofz.tasklist.ui.list
+package me.aofz.tasklist.ui.tasklist
 
 import androidx.lifecycle.*
-import me.aofz.tasklist.data.repository.TaskRepository
+import me.aofz.tasklist.repository.TaskRepository
 import me.aofz.tasklist.model.Task
 
 class ListViewModel(taskRepository: TaskRepository) : ViewModel() {

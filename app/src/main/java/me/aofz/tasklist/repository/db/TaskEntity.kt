@@ -1,4 +1,4 @@
-package me.aofz.tasklist.data.db
+package me.aofz.tasklist.repository.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

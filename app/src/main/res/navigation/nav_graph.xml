@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="me.aofz.tasklist.ui.list.ListFragment"
+        android:name="me.aofz.tasklist.ui.tasklist.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/list_fragment">
         <action

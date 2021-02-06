@@ -1,4 +1,4 @@
-package me.aofz.tasklist.ui.list
+package me.aofz.tasklist.ui.tasklist
 
 import android.view.View
 import android.view.ViewGroup

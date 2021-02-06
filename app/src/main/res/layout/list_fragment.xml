@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="me.aofz.tasklist.ui.list.ListViewModel" />
+            type="me.aofz.tasklist.ui.tasklist.ListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
