@@ -1,21 +1,33 @@
 package me.aofz.tasklist.di
 
+import android.content.Context
 import androidx.room.Room
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import me.aofz.tasklist.repository.db.TaskDatabase
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import me.aofz.tasklist.repository.db.TaskDatabaseDAO
+import javax.inject.Singleton
 
-val DatabaseModule = module {
-    single {
-        Room.databaseBuilder(
-            androidContext().applicationContext,
-            TaskDatabase::class.java,
-            "task_database"
-        )
+
+@Module
+@InstallIn(ApplicationComponent::class)
+object DatabaseModule {
+
+    @Singleton
+    @Provides
+    fun provideDatabase(@ApplicationContext context: Context): TaskDatabase {
+        return Room.databaseBuilder(context, TaskDatabase::class.java, "task_database")
             .fallbackToDestructiveMigration()
             .build()
     }
-    single {
-        get<TaskDatabase>().taskDatabaseDAO()
+
+    @Singleton
+    @Provides
+    fun provideDatabaseDAO(database: TaskDatabase): TaskDatabaseDAO {
+        return database.taskDatabaseDAO()
     }
+
 }

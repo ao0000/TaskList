@@ -1,5 +1,6 @@
 package me.aofz.tasklist.ui.addtask
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,8 @@ import kotlinx.coroutines.launch
 import me.aofz.tasklist.repository.TaskRepository
 import me.aofz.tasklist.model.Task
 
-class AddViewModel(private val taskRepository: TaskRepository) : ViewModel() {
+class AddViewModel @ViewModelInject constructor(private val taskRepository: TaskRepository) :
+    ViewModel() {
 
     // Two-way binding
     val title = MutableLiveData<String>()

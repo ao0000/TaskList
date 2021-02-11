@@ -6,8 +6,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import me.aofz.tasklist.repository.db.TaskDatabaseDAO
 import me.aofz.tasklist.model.Task
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class TaskRepository(private val database: TaskDatabaseDAO) {
+@Singleton
+class TaskRepository @Inject constructor(private val database: TaskDatabaseDAO) {
 
     fun getTasks(): Flow<List<Task>> {
         return database.observeTasks().map {
