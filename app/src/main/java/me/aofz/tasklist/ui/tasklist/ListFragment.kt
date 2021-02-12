@@ -7,10 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.wada811.viewbinding.viewBinding
+import com.xwray.groupie.*
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
-import me.aofz.tasklist.model.Task
+import me.aofz.tasklist.ui.tasklist.item.TaskItem
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.list_fragment) {
@@ -18,11 +19,16 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     private val listFragmentBinding by viewBinding(ListFragmentBinding::bind)
     private val listViewModel by viewModels<ListViewModel>()
 
+    private val adapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listFragmentBinding.viewModel = listViewModel
         setUpRecyclerAdapter()
+        setUpAddButton()
+    }
+
+    private fun setUpAddButton() {
         listViewModel.addButtonClicked.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -31,22 +37,24 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     }
 
     private fun setUpRecyclerAdapter() {
-        val listRecyclerAdapter = ListRecyclerAdapter(this::onClick)
-        listFragmentBinding.listRecyclerView.adapter = listRecyclerAdapter
-        subscribeUI(listRecyclerAdapter)
-    }
+        listFragmentBinding.listRecyclerView.adapter = adapter
+        adapter.setOnItemClickListener { item, view ->
+            val taskItem = item as TaskItem
+            val action = ListFragmentDirections.actionListFragmentToDetailFragment(taskItem.task)
+            findNavController().navigate(action)
+        }
 
-    private fun subscribeUI(adapter: ListRecyclerAdapter) {
         listViewModel.allTask.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
+            it?.let { taskList ->
+                adapter.update(mutableListOf<Group>().apply {
+                    taskList.forEach {
+                        add(TaskItem(it))
+                    }
+                })
             }
         })
+
     }
 
-    private fun onClick(view: View, task: Task) {
-        val action = ListFragmentDirections.actionListFragmentToDetailFragment(task)
-        findNavController().navigate(action)
-    }
 
 }
