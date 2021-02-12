@@ -9,10 +9,24 @@ import me.aofz.tasklist.model.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class TaskRepository @Inject constructor(private val database: TaskDatabaseDAO) {
+interface TaskRepository {
 
-    fun getTasks(): Flow<List<Task>> {
+    fun getTasks(): Flow<List<Task>>
+
+    suspend fun insert(task: Task)
+
+    suspend fun delete(task: Task)
+
+    suspend fun update(task: Task)
+
+}
+
+
+@Singleton
+class TaskRepositoryImpl @Inject constructor(private val database: TaskDatabaseDAO) :
+    TaskRepository {
+
+    override fun getTasks(): Flow<List<Task>> {
         return database.observeTasks().map {
             it.map { taskEntity ->
                 taskEntity.toTask()
@@ -20,19 +34,19 @@ class TaskRepository @Inject constructor(private val database: TaskDatabaseDAO) 
         }
     }
 
-    suspend fun insert(task: Task) {
+    override suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
             database.insertTask(task.toEntity())
         }
     }
 
-    suspend fun delete(task: Task) {
+    override suspend fun delete(task: Task) {
         withContext(Dispatchers.IO) {
             database.deleteTask(task.toEntity())
         }
     }
 
-    suspend fun update(task: Task) {
+    override suspend fun update(task: Task) {
         withContext(Dispatchers.IO) {
             database.updateTask(task.toEntity())
         }
