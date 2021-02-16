@@ -37,13 +37,19 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     }
 
     private fun setUpRecyclerAdapter() {
-        listFragmentBinding.listRecyclerView.adapter = adapter
-        adapter.setOnItemClickListener { item, view ->
-            val taskItem = item as TaskItem
-            val action = ListFragmentDirections.actionListFragmentToDetailFragment(taskItem.task)
-            findNavController().navigate(action)
+        listFragmentBinding.listRecyclerView.adapter = adapter.apply {
+            setOnItemClickListener(onItemClickListener)
         }
+        observeList()
+    }
 
+    private val onItemClickListener = OnItemClickListener { item, _ ->
+        val taskItem = item as TaskItem
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(taskItem.task)
+        findNavController().navigate(action)
+    }
+
+    private fun observeList() {
         listViewModel.allTask.observe(viewLifecycleOwner, Observer {
             it?.let { taskList ->
                 adapter.update(mutableListOf<Group>().apply {
@@ -53,8 +59,6 @@ class ListFragment : Fragment(R.layout.list_fragment) {
                 })
             }
         })
-
     }
-
 
 }
