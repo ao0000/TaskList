@@ -74,12 +74,17 @@ class ListFragment : Fragment(R.layout.list_fragment) {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
-            ): Boolean = false
+            ): Boolean {
+                return false
+            }
+
+            override fun isItemViewSwipeEnabled(): Boolean {
+                return true
+            }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val item = groupAdapter.getItem(viewHolder.adapterPosition)
-                val source = item as TaskItem
-                listViewModel.deleteTask(source.task)
+                val item = groupAdapter.getItem(viewHolder.adapterPosition) as TaskItem
+                listViewModel.deleteTask(item.task)
                 taskSection.remove(item)
             }
         }
