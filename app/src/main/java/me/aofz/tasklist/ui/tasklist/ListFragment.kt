@@ -38,15 +38,6 @@ class ListFragment : Fragment(R.layout.list_fragment) {
             ItemTouchHelper(touchCallback).attachToRecyclerView(this)
         }
         observeList()
-        setUpAddButton()
-    }
-
-    private fun setUpAddButton() {
-        listViewModel.addButtonClicked.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                findNavController().navigate(R.id.action_listFragment_to_addFragment)
-            }
-        })
     }
 
     private val onItemClickListener = OnItemClickListener { item, _ ->
