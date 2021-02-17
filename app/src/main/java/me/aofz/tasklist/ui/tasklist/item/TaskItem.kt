@@ -1,6 +1,7 @@
 package me.aofz.tasklist.ui.tasklist.item
 
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.xwray.groupie.viewbinding.BindableItem
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListItemBinding
@@ -17,5 +18,7 @@ class TaskItem(val task: Task) :
         viewBinding.listTitleText.text = task.title
         viewBinding.listDescriptionText.text = task.description
     }
+
+    override fun getSwipeDirs(): Int = ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
 
 }

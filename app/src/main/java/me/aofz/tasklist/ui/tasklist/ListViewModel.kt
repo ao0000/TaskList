@@ -2,6 +2,7 @@ package me.aofz.tasklist.ui.tasklist
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import kotlinx.coroutines.launch
 import me.aofz.tasklist.repository.TaskRepository
 import me.aofz.tasklist.model.Task
 
@@ -16,5 +17,10 @@ class ListViewModel @ViewModelInject constructor(private val taskRepository: Tas
     fun navigateAddTask() {
         _addButtonClicked.value = true
         _addButtonClicked.value = null
+    }
+    fun deleteTask(task :Task) {
+        viewModelScope.launch {
+            taskRepository.delete(task)
+        }
     }
 }
