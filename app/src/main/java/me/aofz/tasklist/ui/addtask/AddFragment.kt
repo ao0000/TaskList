@@ -2,7 +2,6 @@ package me.aofz.tasklist.ui.addtask
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,7 +10,7 @@ import me.aofz.tasklist.databinding.AddFragmentBinding
 import com.wada811.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.tasklist.R
-import me.aofz.tasklist.ui.hideKeyboard
+import me.aofz.tasklist.ext.hideKeyboard
 
 @AndroidEntryPoint
 class AddFragment : Fragment(R.layout.add_fragment) {

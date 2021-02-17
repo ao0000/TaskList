@@ -10,14 +10,6 @@ class ListViewModel @ViewModelInject constructor(private val taskRepository: Tas
     ViewModel() {
     val allTask: LiveData<List<Task>> = taskRepository.getTasks().asLiveData()
 
-    private val _addButtonClicked = MutableLiveData<Boolean>()
-    val addButtonClicked: LiveData<Boolean>
-        get() = _addButtonClicked
-
-    fun navigateAddTask() {
-        _addButtonClicked.value = true
-        _addButtonClicked.value = null
-    }
     fun deleteTask(task :Task) {
         viewModelScope.launch {
             taskRepository.delete(task)

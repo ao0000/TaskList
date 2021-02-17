@@ -1,4 +1,4 @@
-package me.aofz.tasklist.ui
+package me.aofz.tasklist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
