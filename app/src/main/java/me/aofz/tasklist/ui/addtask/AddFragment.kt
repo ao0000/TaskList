@@ -10,7 +10,6 @@ import me.aofz.tasklist.databinding.AddFragmentBinding
 import com.wada811.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.tasklist.R
-import me.aofz.tasklist.ext.hideKeyboard
 
 @AndroidEntryPoint
 class AddFragment : Fragment(R.layout.add_fragment) {
@@ -28,7 +27,6 @@ class AddFragment : Fragment(R.layout.add_fragment) {
         addViewModel.decideButtonClicked.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().popBackStack()
-                hideKeyboard()
             }
         })
     }

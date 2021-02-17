@@ -13,6 +13,7 @@ import com.xwray.groupie.*
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
+import me.aofz.tasklist.ext.hideKeyboard
 import me.aofz.tasklist.ui.tasklist.item.TaskItem
 
 @AndroidEntryPoint
@@ -27,7 +28,7 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listFragmentBinding.viewModel = listViewModel
-
+        hideKeyboard()
 
         groupAdapter.apply {
             setOnItemClickListener(onItemClickListener)
