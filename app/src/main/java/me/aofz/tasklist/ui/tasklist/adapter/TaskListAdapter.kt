@@ -1,4 +1,4 @@
-package me.aofz.tasklist.ui.tasklist
+package me.aofz.tasklist.ui.tasklist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +9,13 @@ import me.aofz.tasklist.databinding.ListItemBinding
 import me.aofz.tasklist.model.Task
 
 class TaskListAdapter(private val onClicked: (task: Task) -> Unit) :
-    ListAdapter<Task, TaskViewHolder>(DiffCallBack()) {
+    ListAdapter<Task, TaskViewHolder>(
+        DiffCallBack()
+    ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
-        TaskViewHolder.create(parent)
+        TaskViewHolder.create(
+            parent
+        )
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int): Unit =
         holder.bind(getItem(position), onClicked)

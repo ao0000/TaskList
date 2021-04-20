@@ -14,6 +14,8 @@ import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
 import me.aofz.tasklist.ext.hideKeyboard
 import me.aofz.tasklist.model.Task
+import me.aofz.tasklist.ui.tasklist.adapter.TaskListAdapter
+import me.aofz.tasklist.ui.tasklist.adapter.TaskViewHolder
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.list_fragment) {
@@ -21,10 +23,11 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     private val listFragmentBinding by viewBinding(ListFragmentBinding::bind)
     private val listViewModel by viewModels<ListViewModel>()
 
-    private val adapter = TaskListAdapter { item: Task ->
-        val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
-        findNavController().navigate(action)
-    }
+    private val adapter =
+        TaskListAdapter { item: Task ->
+            val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
+            findNavController().navigate(action)
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
