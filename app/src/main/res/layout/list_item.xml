@@ -2,11 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="task"
+            type="me.aofz.tasklist.model.Task" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:orientation="vertical">
 
@@ -16,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
+            android:text="@{task.title}"
             android:textSize="24sp"
             tools:text="title" />
 
@@ -25,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:singleLine="true"
+            android:text="@{task.description}"
             android:textColor="@color/cardview_shadow_start_color"
             android:textSize="16sp"
             tools:text="description" />
