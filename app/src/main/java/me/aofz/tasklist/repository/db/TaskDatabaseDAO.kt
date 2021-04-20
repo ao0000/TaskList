@@ -2,6 +2,7 @@ package me.aofz.tasklist.repository.db
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import me.aofz.tasklist.model.TaskEntity
 
 @Dao
 interface TaskDatabaseDAO {

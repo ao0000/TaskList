@@ -2,7 +2,6 @@ package me.aofz.tasklist.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import me.aofz.tasklist.repository.db.TaskEntity
 
 @Parcelize
 data class Task(
@@ -10,5 +9,6 @@ data class Task(
     val title: String,
     val description: String
 ) : Parcelable {
-    fun toEntity() = TaskEntity(id, title, description)
+    fun toEntity(): TaskEntity =
+        TaskEntity(id, title, description)
 }

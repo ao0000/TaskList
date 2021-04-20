@@ -1,9 +1,8 @@
-package me.aofz.tasklist.repository.db
+package me.aofz.tasklist.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import me.aofz.tasklist.model.Task
 
 @Entity(tableName = "task_table")
 data class TaskEntity(
@@ -19,5 +18,5 @@ data class TaskEntity(
     var description: String = ""
 
 ) {
-    fun toTask() = Task(id, title, description)
+    fun toTask(): Task = Task(id, title, description)
 }

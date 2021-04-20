@@ -4,14 +4,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import me.aofz.tasklist.repository.db.TaskDatabaseDAO
 import me.aofz.tasklist.model.Task
+import me.aofz.tasklist.repository.db.TaskDatabaseDAO
 import javax.inject.Inject
 import javax.inject.Singleton
 
 interface TaskRepository {
 
-    fun getTasks(): Flow<List<Task>>
+    suspend fun getTasks(): Flow<List<Task>>
 
     suspend fun insert(task: Task)
 
@@ -26,7 +26,7 @@ interface TaskRepository {
 class TaskRepositoryImpl @Inject constructor(private val database: TaskDatabaseDAO) :
     TaskRepository {
 
-    override fun getTasks(): Flow<List<Task>> {
+    override suspend fun getTasks(): Flow<List<Task>> {
         return database.observeTasks().map {
             it.map { taskEntity ->
                 taskEntity.toTask()
