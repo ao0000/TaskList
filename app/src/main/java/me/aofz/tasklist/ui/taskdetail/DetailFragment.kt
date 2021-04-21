@@ -15,13 +15,13 @@ import me.aofz.tasklist.databinding.DetailFragmentBinding
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.detail_fragment) {
 
-    private val detailFragmentBinding by viewBinding(DetailFragmentBinding::bind)
-    private val detailViewModel by viewModels<DetailViewModel>()
+    private val binding: DetailFragmentBinding by viewBinding(DetailFragmentBinding::bind)
+    private val detailViewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        detailFragmentBinding.viewModel = detailViewModel
+        binding.viewModel = detailViewModel
         setUpTask()
         setUpDeleteButton()
     }

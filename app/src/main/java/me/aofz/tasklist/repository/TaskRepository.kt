@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 interface TaskRepository {
 
-    suspend fun getTasks(): Flow<List<Task>>
+    fun getTasks(): Flow<List<Task>>
 
     suspend fun insert(task: Task)
 
@@ -26,7 +26,7 @@ interface TaskRepository {
 class TaskRepositoryImpl @Inject constructor(private val database: TaskDatabaseDAO) :
     TaskRepository {
 
-    override suspend fun getTasks(): Flow<List<Task>> {
+    override fun getTasks(): Flow<List<Task>> {
         return database.observeTasks().map {
             it.map { taskEntity ->
                 taskEntity.toTask()

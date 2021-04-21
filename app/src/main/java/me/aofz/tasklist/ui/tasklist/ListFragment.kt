@@ -14,34 +14,34 @@ import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.ListFragmentBinding
 import me.aofz.tasklist.ext.hideKeyboard
 import me.aofz.tasklist.model.Task
-import me.aofz.tasklist.ui.tasklist.adapter.TaskListAdapter
+import me.aofz.tasklist.ui.tasklist.adapter.ListAdapter
 import me.aofz.tasklist.ui.tasklist.adapter.TaskViewHolder
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.list_fragment) {
 
-    private val listFragmentBinding by viewBinding(ListFragmentBinding::bind)
-    private val listViewModel by viewModels<ListViewModel>()
+    private val binding: ListFragmentBinding by viewBinding(ListFragmentBinding::bind)
+    private val viewModel: ListViewModel by viewModels()
 
     private val adapter =
-        TaskListAdapter { item: Task ->
+        ListAdapter { item: Task ->
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
             findNavController().navigate(action)
         }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listFragmentBinding.lifecycleOwner = viewLifecycleOwner
-        listFragmentBinding.viewModel = listViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         hideKeyboard()
 
-        listFragmentBinding.listRecyclerView.adapter = adapter
+        binding.listRecyclerView.adapter = adapter
         initSwiped()
         observeList()
     }
 
     private fun observeList() {
-        listViewModel.allTask.observe(viewLifecycleOwner, Observer {
+        viewModel.allTask.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
@@ -69,11 +69,11 @@ class ListFragment : Fragment(R.layout.list_fragment) {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val taskViewHolder: TaskViewHolder = viewHolder as TaskViewHolder
                     taskViewHolder.value?.let {
-                        listViewModel.deleteTask(it)
+                        viewModel.deleteTask(it)
                     }
                 }
             }
-        ).attachToRecyclerView(listFragmentBinding.listRecyclerView)
+        ).attachToRecyclerView(binding.listRecyclerView)
     }
 
 }

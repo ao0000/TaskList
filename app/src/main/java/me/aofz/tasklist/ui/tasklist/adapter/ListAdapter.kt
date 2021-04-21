@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.databinding.ListItemBinding
 import me.aofz.tasklist.model.Task
 
-class TaskListAdapter(private val onClicked: (task: Task) -> Unit) :
+class ListAdapter(private val onClicked: (task: Task) -> Unit) :
     ListAdapter<Task, TaskViewHolder>(
         DiffCallBack()
     ) {
