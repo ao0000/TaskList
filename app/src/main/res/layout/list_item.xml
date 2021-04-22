@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:text="@{task.title}"
+            android:text="@{task.title.toString()}"
             android:textSize="24sp"
             tools:text="title" />
 

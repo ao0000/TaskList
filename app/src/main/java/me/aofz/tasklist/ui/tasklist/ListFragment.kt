@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -21,35 +22,33 @@ import me.aofz.tasklist.ui.tasklist.adapter.TaskViewHolder
 class ListFragment : Fragment(R.layout.list_fragment) {
 
     private val binding: ListFragmentBinding by viewBinding(ListFragmentBinding::bind)
+
     private val viewModel: ListViewModel by viewModels()
 
-    private val adapter =
-        ListAdapter { item: Task ->
-            val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
-            findNavController().navigate(action)
-        }
+    private val adapter = ListAdapter(this::listItemClicked)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        hideKeyboard()
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            listRecyclerView.adapter = adapter
+            initSwiped(listRecyclerView)
+        }
 
-        binding.listRecyclerView.adapter = adapter
-        initSwiped()
+        hideKeyboard()
         observeList()
     }
 
     private fun observeList() {
         viewModel.allTask.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
+            it?.let { taskList ->
+                adapter.submitList(taskList)
             }
         })
     }
 
 
-    private fun initSwiped() {
+    private fun initSwiped(recyclerView: RecyclerView) {
         ItemTouchHelper(
             object : ItemTouchHelper.Callback() {
                 override fun getMovementFlags(
@@ -68,12 +67,16 @@ class ListFragment : Fragment(R.layout.list_fragment) {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val taskViewHolder: TaskViewHolder = viewHolder as TaskViewHolder
-                    taskViewHolder.value?.let {
-                        viewModel.deleteTask(it)
+                    taskViewHolder.value?.let { task ->
+                        viewModel.deleteTask(task)
                     }
                 }
             }
-        ).attachToRecyclerView(binding.listRecyclerView)
+        ).attachToRecyclerView(recyclerView)
     }
 
+    private fun listItemClicked(item: Task) {
+        val action: NavDirections = ListFragmentDirections.actionListFragmentToDetailFragment(item)
+        findNavController().navigate(action)
+    }
 }

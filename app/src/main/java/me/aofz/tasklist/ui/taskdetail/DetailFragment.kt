@@ -11,12 +11,15 @@ import com.wada811.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.tasklist.R
 import me.aofz.tasklist.databinding.DetailFragmentBinding
+import me.aofz.tasklist.model.Task
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.detail_fragment) {
 
     private val binding: DetailFragmentBinding by viewBinding(DetailFragmentBinding::bind)
+
     private val detailViewModel: DetailViewModel by viewModels()
+
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,13 +30,16 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
     }
 
     private fun setUpDeleteButton() {
-        detailViewModel.deleteButtonClicked.observe(viewLifecycleOwner, Observer {
-            findNavController().popBackStack()
-        })
+        detailViewModel.deleteButtonClicked.observe(
+            viewLifecycleOwner,
+            Observer {
+                findNavController().popBackStack()
+            }
+        )
     }
 
     private fun setUpTask() {
-        val initialTask = args.receivedTask
+        val initialTask: Task = args.receivedTask
         detailViewModel.setUpTask(initialTask)
     }
 }

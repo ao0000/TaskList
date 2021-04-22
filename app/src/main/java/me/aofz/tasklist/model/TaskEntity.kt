@@ -12,11 +12,15 @@ data class TaskEntity(
     var id: Long = 0,
 
     @ColumnInfo(name = "task_title")
-    var title: String = "",
+    var title: String,
 
     @ColumnInfo(name = "task_description")
     var description: String = ""
 
 ) {
-    fun toTask(): Task = Task(id, title, description)
+    fun toTask(): Task = Task(
+        id,
+        Title(title),
+        description
+    )
 }

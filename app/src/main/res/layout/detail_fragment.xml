@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@{viewModel.task.title}"
+            android:text="@{viewModel.task.title.toString()}"
             android:textSize="32sp"
             tools:text="Title" />
 
