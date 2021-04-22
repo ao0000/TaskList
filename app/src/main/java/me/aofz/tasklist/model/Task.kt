@@ -7,16 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Task(
     val id: Long = 0,
     val title: Title,
-    val description: String
+    val description: Description
 ) : Parcelable {
-    fun toEntity(): TaskEntity = TaskEntity(id, title.toString(), description)
-}
-
-@Parcelize
-data class Title(val value: String) : Parcelable {
-    init {
-        require(value.isNotEmpty())
-    }
-
-    override fun toString(): String = value
+    fun toEntity(): TaskEntity = TaskEntity(id, title.toString(), description.toString())
 }

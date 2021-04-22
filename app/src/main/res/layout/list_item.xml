@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:singleLine="true"
-            android:text="@{task.description}"
+            android:text="@{task.description.toString()}"
             android:textColor="@color/cardview_shadow_start_color"
             android:textSize="16sp"
             tools:text="description" />

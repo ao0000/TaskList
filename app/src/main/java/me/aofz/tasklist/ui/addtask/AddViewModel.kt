@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import me.aofz.tasklist.model.Description
 import me.aofz.tasklist.model.Task
 import me.aofz.tasklist.model.Title
 import me.aofz.tasklist.repository.TaskRepository
@@ -25,10 +26,10 @@ class AddViewModel @ViewModelInject constructor(private val taskRepository: Task
         val currentDescription: String = description.value ?: ""
         val currentTitle: String = title.value ?: currentDescription
         if (currentTitle.isEmpty()) return
-        
+
         val task = Task(
             title = Title(currentTitle),
-            description = currentDescription
+            description = Description(currentDescription)
         )
 
         viewModelScope.launch {

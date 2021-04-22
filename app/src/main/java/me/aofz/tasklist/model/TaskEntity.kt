@@ -21,6 +21,6 @@ data class TaskEntity(
     fun toTask(): Task = Task(
         id,
         Title(title),
-        description
+        Description(description)
     )
 }
