@@ -2,14 +2,14 @@ package me.aofz.tasklist.ui.tasklist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.tasklist.databinding.ListItemBinding
 import me.aofz.tasklist.model.Task
 
 class ListAdapter(private val onClicked: (task: Task) -> Unit) :
-    ListAdapter<Task, TaskViewHolder>(
+    PagingDataAdapter<Task, TaskViewHolder>(
         DiffCallBack()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
@@ -25,7 +25,8 @@ class TaskViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHo
 
     var value: Task? = null
 
-    fun bind(task: Task, onClicked: (task: Task) -> Unit) {
+    fun bind(task: Task?, onClicked: (task: Task) -> Unit) {
+        task ?: return
         value = task
         binding.task = task
         binding.root.setOnClickListener { onClicked(task) }
