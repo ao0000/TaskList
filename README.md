@@ -1,15 +1,14 @@
 # Task List
- This repository is a simple task list that you can swipe to delete. I used Koin and Dagger-Hilt for dependency injection. Each implementation is separated by branch. The latest branch is the master.
+Task List is a simple task list that you can swipe to delete.
 
 ## Tech stack
 - Kotlin
-- Coroutines
-- Flow
 - Architecture
-    - MVVM Repository pattern
+    - MVVM Architecture
+    - Repository pattern
 - Jetpack
+- Paging3
 - Hilt - for dependency injection
-- ViewBinding-ktx - for measures against DataBinding memory leak
-- Groupie
+~~- Groupie~~
 - Expandable Bottom Bar
-- koin - for dependency injection. It migrated to Dagger-Hilt
+- ~~koin - for dependency injection.~~ It migrated to Dagger-Hilt
