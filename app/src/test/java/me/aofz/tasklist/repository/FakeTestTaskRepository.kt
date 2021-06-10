@@ -25,4 +25,14 @@ class FakeTestTaskRepository : TaskRepository {
         tasksData[task.id.toString()] = task
     }
 
+    fun getTaskList(): List<Task> {
+        return tasksData.values.toList()
+    }
+
+    fun add(vararg tasks: Task) {
+        for (task in tasks) {
+            tasksData[task.id.toString()] = task
+        }
+    }
+
 }
