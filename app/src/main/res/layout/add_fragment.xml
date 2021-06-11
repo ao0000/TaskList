@@ -21,6 +21,7 @@
             android:layout_margin="8dp"
             android:background="#00000000"
             android:hint="Title"
+            android:inputType="text"
             android:nextFocusUp="@id/description_edit"
             android:text="@={viewModel.title}"
             android:textSize="32sp" />
