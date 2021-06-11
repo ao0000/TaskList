@@ -22,7 +22,7 @@ class ListViewModelTest {
     private lateinit var taskRepository: FakeTestTaskRepository
 
     @Before
-    fun setUp() {
+    fun listViewModelSetUp() {
         Dispatchers.setMain(Dispatchers.Unconfined)
 
         taskRepository = FakeTestTaskRepository()
@@ -35,7 +35,7 @@ class ListViewModelTest {
     }
 
     @After
-    fun tearDown() {
+    fun listViewModelTearDown() {
         Dispatchers.resetMain()
     }
 
