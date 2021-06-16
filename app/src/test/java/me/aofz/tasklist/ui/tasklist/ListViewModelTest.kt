@@ -9,7 +9,7 @@ import kotlinx.coroutines.test.setMain
 import me.aofz.tasklist.model.Description
 import me.aofz.tasklist.model.Task
 import me.aofz.tasklist.model.Title
-import me.aofz.tasklist.repository.FakeTestTaskRepository
+import me.aofz.tasklist.repository.FakeTaskRepository
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -19,13 +19,13 @@ class ListViewModelTest {
 
     private lateinit var listViewModel: ListViewModel
 
-    private lateinit var taskRepository: FakeTestTaskRepository
+    private lateinit var taskRepository: FakeTaskRepository
 
     @Before
     fun listViewModelSetUp() {
         Dispatchers.setMain(Dispatchers.Unconfined)
 
-        taskRepository = FakeTestTaskRepository()
+        taskRepository = FakeTaskRepository()
         val task1 = Task(1, Title("title1"), Description("description1"))
         val task2 = Task(2, Title("title2"), Description("description2"))
         val task3 = Task(3, Title("title3"), Description("description3"))

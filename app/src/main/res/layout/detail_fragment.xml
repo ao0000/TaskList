@@ -43,7 +43,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/design_default_color_error"
-            android:onClick="@{() -> viewModel.deleteTask()}"
             android:src="@drawable/ic_baseline_delete_24"
             android:tint="@color/design_default_color_surface"
             app:fabSize="normal" />

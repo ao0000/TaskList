@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import me.aofz.tasklist.model.Task
 
-class FakeTestTaskRepository : TaskRepository {
+class FakeTaskRepository : TaskRepository {
 
     var tasksData: LinkedHashMap<String, Task> = LinkedHashMap()
 
